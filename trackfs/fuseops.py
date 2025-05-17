@@ -67,10 +67,12 @@ class TrackFSOps(Operations):
         fp = self._fusepath(path)
         log.debug(fp)
         st = os.lstat(fp.source)
+        if (st.st_mode & 0o170000) == 0o120000:  # Check if st_mode indicates a symbolic link
+            st = os.lstat(os.readlink(fp.source))
         result = dict((key, getattr(st, key)) for key in (
             'st_atime', 'st_ctime', 'st_gid', 'st_mode', 'st_mtime',
             'st_nlink', 'st_size', 'st_uid'))
-
+        
         if (fp.is_track):
             # If it's one of the FlacTrackFS track paths, 
             # we need to adjust the file size to be roughly
