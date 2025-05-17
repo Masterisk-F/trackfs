@@ -74,7 +74,7 @@ _CUE_LARK_GRAMMAR = r"""
    REST_OF_LINE   : /[^\n]*/ NEWLINE
    ISRC           : LETTER LETTER (DIGIT|LETTER) ~ 10
    
-   STRING : ("\"" /.*?/ "\"") | /[^ \n]+/
+   STRING : ("\"" /.*/ "\"") | /[^ \n]+/
    FILETYPE : "BINARY"  // Intel binary file (LSBF). Use for data files.
       | "MOTOROLA"      // Motorola binary file (MSBF). Use for data files.
       | "AIFF"          // Audio AIFF file (44.1KHz 16-bit stereo)
