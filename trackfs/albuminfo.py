@@ -90,9 +90,13 @@ class AlbumInfo:
         trx = self.tracks()
         if len(trx) == 0:
             return None
-        t = trx[num - 1]
-        if t.num == num:
-            return t
+        try:
+            t = trx[num - 1]
+            if t.num == num:
+                return t
+        except IndexError:
+            log.warning(f'index out of range for track {num}:{self.path}')
+
         for t in trx:
             if t.num == num:
                 return t
