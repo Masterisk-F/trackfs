@@ -1,7 +1,25 @@
+> **This repository is a fork of [andresch/trackfs](https://github.com/andresch/trackfs).**
+>
+> Many thanks to the original author. This fork may include custom modifications or additional features.
+> For details about the main differences or changes from the original, please refer to this README or the release notes.
+> The license remains the same as the original: [GNU LGPL v3.0](https://github.com/andresch/trackfs/blob/master/LICENSE.md).
+
+**Docker Container available : [ghcr.io/masterisk-f/trackfs](https://github.com/users/Masterisk-F/packages/container/package/trackfs)**
+
+## Changes from the Original
+
+This fork includes the following changes and improvements compared to the original [andresch/trackfs](https://github.com/andresch/trackfs):
+
+### Version 0.2.6-1
+- Show symlinks as normal files.    ([bd3598ec](https://github.com/Masterisk-F/trackfs/commit/bd3598ec5795a692d6e50deb2f1bda150cfafe33))
+- Allow operation even if part of the track number is missing (e.g., "01-02-03-05").    ([09750bd6](https://github.com/Masterisk-F/trackfs/commit/09750bd65d35120af61e50f889c26796bfcc31d7))
+- Improved cuesheet parsing: support for titles containing double quotes (longest match for STRING).  ([6c8c140a](https://github.com/Masterisk-F/trackfs/commit/6c8c140ae79ea5ca67841fbdc451bc30b0e1bacd))
+- Added Docker container creation from the local project file.    ([879b9a4d](https://github.com/Masterisk-F/trackfs/commit/879b9a4d0fd6e00280d28298a5e5c17314581173))
+
+
 
 `trackfs`
 =======
-
 `trackfs` is a read-only FUSE filesystem that splits audio files that contain full albums into individual FLAC files per track.
 
 `trackfs` supports three flavors of album files:
@@ -30,7 +48,7 @@ docker run --rm \
     --security-opt apparmor:unconfined \
     -v /path/to/yourmusiclibrary:/src:ro \
     -v /path/to/yourmountpoint:/dst:rshared \
-    andresch/trackfs \
+    ghcr.io/masterisk-f/trackfs \
     --root-allowed
 ```
 
@@ -75,7 +93,7 @@ Instead it is recommended to let `trackfs` run as a regular user. For that to wo
     --user $(id -u):$(id -g) \
     -v /path/to/yourmusiclibrary:/src:ro \
     -v /path/to/yourmountpoint:/dst:rshared \
-    andresch/trackfs 
+    ghcr.io/masterisk-f/trackfs 
   ```
 
 ### All `trackfs` options
@@ -167,10 +185,10 @@ If you have defined a container name (e.g. to "trackfs") you can just use
 docker stop trackfs
 ```
 
-otherwise your first have to find the id of the container that runs the andresch/trackfs image:
+otherwise your first have to find the id of the container that runs the ghcr.io/masterisk-f/trackfs image:
 
 ```
-docker stop $(docker ps | awk '/andresch\/trackfs/{print $1}')
+docker stop $(docker ps | awk '/ghcr.io\/masterisk-f\/trackfs/{print $1}')
 ```
 	
 Acknowledgments
