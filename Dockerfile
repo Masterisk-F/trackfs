@@ -1,20 +1,18 @@
-# =================================
-# Dockerfile for trackfs
-# 
-# Copyright 2020 by Andreas Schmidt
-# All rights reserved.
-# This file is part of the trackfs project
-# and licensed under the terms of the GNU Lesser General Public License v3.0.
-# See https://github.com/andresch/trackfs for details.
-#
-# =================================
-
-FROM docker.io/python:3.8-alpine as builder
+FROM python:3.11-slim
 
 # install dependencies  
-RUN \
-  apk --no-cache add fuse fuse-dev flac \
-  && /usr/local/bin/python -m pip install --upgrade pip
+RUN apt-get update && \
+    apt-get install -y fuse libfuse2 flac && \
+    rm -rf /var/lib/apt/lists/*
+
+# copy the trackfs package
+COPY . /app
+WORKDIR /app
+
+# install the trackfs package
+RUN pip install --upgrade pip && \
+    pip install .
+
 
 # enable non-root users to make FUSE fs non-private
 RUN echo "user_allow_other" >> /etc/fuse.conf 
@@ -32,13 +30,6 @@ RUN echo "user_allow_other" >> /etc/fuse.conf
 # even if some attacker finds a way to take over the container
 
 RUN chmod 666 /etc/passwd 
-
-# Ensure that we get a docker image cache invalidation when there's new content available
-ADD https://api.github.com/repos/andresch/trackfs/compare/master...HEAD /dev/null
-
-# Now install the latest trackfs version from pypi
-RUN \
-  pip install trackfs\>=0.2.5
 
 # source directory containing flac+cue files
 VOLUME /src
