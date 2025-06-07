@@ -124,10 +124,9 @@ class AlbumInfo:
         if 'ALBUM' not in tags and 'TITLE' in tags:
             tags['ALBUM'] = tags['TITLE']
 
-        # add missing tags from cue sheet
+        # overwrite tags from cue sheet
         for (k, v) in self.cue.tags().items():
-            if k not in tags:
-                tags[k] = v
+            tags[k] = v
 
         return tags
 
