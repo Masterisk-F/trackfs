@@ -12,6 +12,7 @@ This fork includes the following changes and improvements compared to the origin
 
 ### Version 0.2.6-1
 - Show symlinks as normal files.    ([bd3598ec](https://github.com/Masterisk-F/trackfs/commit/bd3598ec5795a692d6e50deb2f1bda150cfafe33))
+  - When using a container, don't forget to bind the linked files to the location indicated by the symlink.
 - Allow operation even if part of the track number is missing (e.g., "01-02-03-05").    ([09750bd6](https://github.com/Masterisk-F/trackfs/commit/09750bd65d35120af61e50f889c26796bfcc31d7))
 - Improved cuesheet parsing: support for titles containing double quotes (longest match for STRING).  ([6c8c140a](https://github.com/Masterisk-F/trackfs/commit/6c8c140ae79ea5ca67841fbdc451bc30b0e1bacd))
 - Added Docker container creation from the local project file.    ([879b9a4d](https://github.com/Masterisk-F/trackfs/commit/879b9a4d0fd6e00280d28298a5e5c17314581173))
