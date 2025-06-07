@@ -74,11 +74,12 @@ class AlbumInfo:
                 return None
         else:
             raw_cue = raw_cue[0]
-        log.debug(f"raw cue sheet from FLAC file:\n{raw_cue}")
+            log.debug(f"raw cue sheet from FLAC file:\n{raw_cue}")
         try:
             result = cuesheet.parse(raw_cue, meta.info.length)
-        except:
-            log.warning(f'could not parse cue sheet; ignore cue sheet')
+        except  Exception as e:
+            log.warning(f'could not parse cue sheet; ignore cue sheet: {self.path}')
+            log.warning(e)
             return None
         log.debug(f"parsed cue sheet from FLAC file:\n{result}")
         return result
