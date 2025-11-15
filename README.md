@@ -10,6 +10,10 @@
 
 This fork includes the following changes and improvements compared to the original [andresch/trackfs](https://github.com/andresch/trackfs):
 
+### Version 0.2.6-2
+- Prefer cuesheet data to embedded metadata. ([ae8caf92](https://github.com/Masterisk-F/trackfs/commit/ae8caf921797ed08d595aebacfe9316aa09b73f4))
+- Add log message for cuesheet parsing errors. ([0b180926](https://github.com/Masterisk-F/trackfs/commit/0b1809266d1144b065808ab5de8cc31714b8f4ce))
+
 ### Version 0.2.6-1
 - Show symlinks as normal files.    ([bd3598ec](https://github.com/Masterisk-F/trackfs/commit/bd3598ec5795a692d6e50deb2f1bda150cfafe33))
   - When using a container, don't forget to bind the linked files to the location indicated by the symlink.
