@@ -73,7 +73,8 @@ _CUE_LARK_GRAMMAR = r"""
    UPC_EAN        : DIGIT ~ 12..13
    REST_OF_LINE   : /[^\n]*/ NEWLINE
    ISRC           : LETTER LETTER (DIGIT|LETTER) ~ 10
-   
+         | "000000000000"  // placeholder for missing ISRC
+
    STRING : ("\"" /.*/ "\"") | /[^ \n]+/
    FILETYPE : "BINARY"  // Intel binary file (LSBF). Use for data files.
       | "MOTOROLA"      // Motorola binary file (MSBF). Use for data files.
